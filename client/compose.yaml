@@ -4,11 +4,16 @@ services:
   chatter:
     build: .
     network_mode: host
+    stdin_open: true
+    tty: true
+    container_name: client
+    devices:
+      - "/dev/video0:/dev/video0"
+    privileged: true
     environment:
       - RMW_IMPLEMENTATION=rmw_fastrtps_cpp
       - ROS_DISCOVERY_SERVER=[fc94:ae9e:2a5f:8b44:ea23:e30e:b4b4:7eb0]:11811
     command: >
       bash -c "
         source /opt/ros/jazzy/setup.bash &&
-        ros2 run teleop_twist_keyboard teleop_twist_keyboard --ros-args -r /cmd_vel:=/cmd_vel 
       "

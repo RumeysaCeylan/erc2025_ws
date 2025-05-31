@@ -2,13 +2,24 @@ name: ${CHATTER_ROLE:-robot}
 
 services:
   chatter:
-    build: .
+    build: 
+      context: .
+      dockerfile: Dockerfile
     network_mode: host
+    tty: true
+    stdin_open: true
+    container_name: server
+    devices:
+      - "/dev/video0:/dev/video0"
+    privileged: true
     environment:
       - RMW_IMPLEMENTATION=rmw_fastrtps_cpp
       - ROS_DISCOVERY_SERVER=[fc94:ae9e:2a5f:8b44:ea23:e30e:b4b4:7eb0]:11811
+      - DISPLAY=${DISPLAY}
+      - QT_X11_NO_MITSHM=1
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix:rw
     command: >
       bash -c "
-        source /opt/ros/jazzy/setup.bash &&
-        ros2 topic echo /cmd_vel geometry_msgs/msg/Twist --qos-reliability reliable 
+        source /opt/ros/jazzy/setup.bash
       "
