@@ -15,5 +15,5 @@ services:
       - ROS_DISCOVERY_SERVER=[fc94:ae9e:2a5f:8b44:ea23:e30e:b4b4:7eb0]:11811
     command: >
       bash -c "
-        source /opt/ros/jazzy/setup.bash &&
+        source /opt/ros/jazzy/setup.bash 
       "
