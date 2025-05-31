@@ -1,0 +1,5 @@
+services:
+  ds:
+    image: ros:jazzy-ros-core
+    network_mode: host
+    command: fastdds discovery -i 0 -l husarnet-local -p 11811
