@@ -6,9 +6,9 @@ services:
     network_mode: host
     environment:
       - RMW_IMPLEMENTATION=rmw_fastrtps_cpp
-      - ROS_DISCOVERY_SERVER=ds-host:11811
+      - ROS_DISCOVERY_SERVER=[fc94:ae9e:2a5f:8b44:ea23:e30e:b4b4:7eb0]:11811
     command: >
       bash -c "
-        source /opt/ros/iron/setup.bash &&
-        ros2 topic echo /cmd_vel
+        source /opt/ros/jazzy/setup.bash &&
+        ros2 topic echo /cmd_vel geometry_msgs/msg/Twist --qos-reliability reliable 
       "
