@@ -3,6 +3,7 @@ FROM ros:jazzy-ros-core
 # Sistem gereksinimleri
 RUN apt update && apt install -y \
     python3-opencv \
+    ros-jazzy-v4l2-camera \
     ros-jazzy-cv-bridge
 
 # Çalışma dizini
